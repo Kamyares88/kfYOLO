@@ -1,0 +1,75 @@
+# YOLO Training Configuration for Biomedical Object Detection
+# This config supports both object detection and instance segmentation
+
+# Dataset Configuration
+path: ./dataset  # Dataset root directory
+train: images/train  # Train images (relative to 'path')
+val: images/val      # Validation images (relative to 'path')
+test: images/test    # Test images (relative to 'path')
+
+# Classes
+nc: 0  # Number of classes (will be auto-detected from dataset.yaml)
+names: []  # Class names (will be auto-detected from dataset.yaml)
+
+# Training Configuration
+epochs: 100
+batch_size: 16
+imgsz: 640
+device: 0  # GPU device (use 'cpu' for CPU training)
+
+# Model Configuration
+model: yolov9-c.pt  # Pre-trained model path
+pretrained: true
+freeze: []  # Layers to freeze (empty = no freezing)
+
+# Data Augmentation
+hsv_h: 0.015  # HSV-Hue augmentation
+hsv_s: 0.7    # HSV-Saturation augmentation
+hsv_v: 0.4    # HSV-Value augmentation
+degrees: 0.0   # Image rotation (+/- deg)
+translate: 0.1 # Image translation (+/- fraction)
+scale: 0.5    # Image scale (+/- gain)
+shear: 0.0    # Image shear (+/- deg)
+perspective: 0.0  # Image perspective (+/- fraction)
+flipud: 0.0   # Image flip up-down (probability)
+fliplr: 0.5   # Image flip left-right (probability)
+mosaic: 1.0   # Image mosaic (probability)
+mixup: 0.0    # Image mixup (probability)
+
+# Loss Configuration
+box: 7.5      # Box loss gain
+cls: 0.5      # Class loss gain
+dfl: 1.5      # DFL loss gain
+pose: 12.0    # Pose loss gain
+kobj: 2.0     # Keypoint obj loss gain
+label_smoothing: 0.0  # Label smoothing epsilon
+
+# Optimization
+lr0: 0.01     # Initial learning rate
+lrf: 0.01     # Final learning rate (lr0 * lrf)
+momentum: 0.937  # SGD momentum/Adam beta1
+weight_decay: 0.0005  # Optimizer weight decay
+warmup_epochs: 3.0    # Warmup epochs
+warmup_momentum: 0.8  # Warmup initial momentum
+warmup_bias_lr: 0.1   # Warmup initial bias lr
+
+# Instance Segmentation (if needed)
+seg: true     # Enable instance segmentation
+seg_scale: 1.0  # Segmentation loss scale
+
+# Save Configuration
+save_period: 10  # Save checkpoint every x epochs
+save_dir: runs/train  # Save directory
+project: biomedical_yolo  # Project name
+name: exp  # Experiment name
+
+# Validation Configuration
+val: true     # Validate during training
+plots: true   # Save plots
+save_json: false  # Save a COCO-JSON results file
+save_hybrid: false  # Save hybrid version of labels
+save_conf: false  # Save confidences in --save-txt labels
+save_crop: false  # Save cropped prediction boxes
+save_txt: false   # Save results to *.txt
+save_txt_txt_label_format: False  # Save results to *.txt in label format instead of class format
+save_txt_conf: False  # Save results to *.txt with confidence scores

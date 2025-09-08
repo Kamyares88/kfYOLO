@@ -1,0 +1,35 @@
+# Dataset configuration for biomedical object detection
+# Modify this file according to your specific biomedical dataset
+
+# Dataset paths
+path: ./dataset  # Dataset root directory
+train: images/train  # Train images (relative to 'path')
+val: images/val      # Validation images (relative to 'path')
+test: images/test    # Test images (relative to 'path')
+
+# Classes - MODIFY THESE ACCORDING TO YOUR DATASET
+nc: 5  # Number of classes
+names: 
+  0: cell
+  1: nucleus
+  2: mitochondria
+  3: golgi_apparatus
+  4: endoplasmic_reticulum
+
+# Example for different biomedical objects:
+# nc: 3
+# names:
+#   0: tumor
+#   1: blood_vessel
+#   2: organ
+
+# Example for medical imaging:
+# nc: 4
+# names:
+#   0: lung
+#   1: heart
+#   2: liver
+#   3: kidney
+
+# Note: Replace the class names above with your actual biomedical object classes
+# The number of classes (nc) should match the number of names you provide
